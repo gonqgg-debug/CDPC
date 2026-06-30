@@ -135,7 +135,9 @@
       opacity: 0.4;
     }
 
-    body.promo-active { padding-top: var(--sticky-height); }
+    body.promo-active {
+      padding-top: var(--sticky-height);
+    }
 
     /* ─── Typography ─── */
     h1, h2, h3 {
@@ -797,13 +799,251 @@
     .reveal-delay-1 { transition-delay: 0.1s; }
     .reveal-delay-2 { transition-delay: 0.2s; }
     .reveal-delay-3 { transition-delay: 0.3s; }
+
+    /* ─── Mobile ─── */
+    .sticky-bar__scarcity--short { display: none; }
+
+    @media (max-width: 767px) {
+      :root {
+        --sticky-offset: 64px;
+      }
+
+      .container { padding: 0 1.1rem; }
+      section { padding: 3.25rem 0; }
+
+      /* Sticky bar */
+      body.promo-active {
+        padding-top: calc(var(--sticky-offset) + env(safe-area-inset-top, 0px));
+      }
+      .sticky-bar {
+        height: auto;
+        min-height: 44px;
+        padding: 0.45rem 0.75rem;
+        padding-top: calc(0.45rem + env(safe-area-inset-top, 0px));
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.3rem 0.6rem;
+      }
+      .sticky-bar__scarcity--full { display: none; }
+      .sticky-bar__scarcity--short {
+        display: block;
+        width: 100%;
+        text-align: center;
+        font-size: 0.6rem;
+        line-height: 1.35;
+        letter-spacing: 0.08em;
+      }
+      .sticky-bar__sep { display: none; }
+      .sticky-bar__countdown { gap: 0.5rem; }
+
+      /* Header */
+      .site-header { padding: 1rem 0; }
+      .site-header .container {
+        align-items: flex-start;
+        gap: 0.5rem;
+      }
+      .brand-logo { gap: 0.35rem; max-width: 58%; }
+      .brand-logo__img { height: 40px; }
+      .brand-logo__tagline {
+        font-size: 0.5rem;
+        letter-spacing: 0.16em;
+        line-height: 1.4;
+      }
+      .site-header__project {
+        font-size: 0.58rem;
+        letter-spacing: 0.1em;
+        flex-shrink: 0;
+        padding-top: 0.15rem;
+      }
+
+      /* Typography */
+      h1 { font-size: clamp(1.65rem, 7.5vw, 2.15rem); line-height: 1.22; }
+      h2 { font-size: clamp(1.45rem, 5.5vw, 1.85rem); line-height: 1.25; }
+      h3 { font-size: 1.1rem; }
+      .section-label {
+        font-size: 0.6rem;
+        letter-spacing: 0.14em;
+        margin-bottom: 0.75rem;
+      }
+
+      /* Hero */
+      .hero { padding: 1.75rem 0 3rem; }
+      .hero__layout {
+        display: flex;
+        flex-direction: column;
+        gap: 1.75rem;
+      }
+      .hero__visual { order: -1; }
+      .hero__content { padding-top: 0; max-width: none; }
+      .hero__image {
+        aspect-ratio: 16/10;
+        max-height: 240px;
+        object-position: center;
+      }
+      .hero__badge {
+        font-size: 0.58rem;
+        letter-spacing: 0.1em;
+        line-height: 1.45;
+        padding: 0.4rem 0.75rem;
+        margin-bottom: 1rem;
+      }
+      body.promo-active .hero__timer { display: none; }
+      .hero__title { margin-bottom: 1rem; }
+      .hero__subtitle {
+        font-size: 0.92rem;
+        line-height: 1.65;
+        margin-bottom: 1.5rem;
+      }
+      .hero__cta {
+        flex-direction: column;
+        gap: 0.65rem;
+      }
+      .hero__cta .btn { width: 100%; }
+
+      /* Buttons */
+      .btn {
+        padding: 0.88rem 1.15rem;
+        font-size: 0.74rem;
+        letter-spacing: 0.06em;
+      }
+      .btn--large {
+        padding: 1rem 1.25rem;
+        font-size: 0.76rem;
+        width: 100%;
+        max-width: 100%;
+      }
+
+      /* Reasons */
+      .reasons__grid { margin-top: 2rem; }
+      .reason-card {
+        padding: 1.5rem 0;
+        border-bottom: 1px solid var(--cd-line);
+      }
+      .reason-card:last-child { border-bottom: none; }
+      .reason-card__mark { margin-bottom: 1.25rem; }
+      .reason-card p { font-size: 0.88rem; }
+
+      /* Gallery */
+      .gallery__header { margin-bottom: 1.75rem; }
+      .gallery__grid { gap: 0.45rem; }
+      .gallery__item img { aspect-ratio: 1; }
+
+      /* Packages */
+      .packages__header { margin-bottom: 2rem; }
+      .packages__header p { font-size: 0.9rem; line-height: 1.65; }
+      .packages__grid { gap: 1.5rem; }
+      .package-card__body { padding: 1.25rem 1rem 1.5rem; }
+      .package-card__price { font-size: 1.85rem; }
+      .package-card__includes {
+        font-size: 0.78rem;
+        margin-bottom: 1.25rem;
+      }
+      .package-card__includes li { padding-left: 0.85rem; }
+      .package-card__btn { letter-spacing: 0.04em; }
+
+      /* Conditions */
+      .conditions__grid {
+        gap: 0;
+        margin-top: 2rem;
+      }
+      .condition-item {
+        padding: 1.5rem 0;
+        border-bottom: 1px solid var(--cd-line);
+      }
+      .condition-item:last-child { border-bottom: none; }
+      .condition-item__number { font-size: 2.25rem; }
+      .condition-item p { font-size: 0.88rem; }
+      .conditions__promo-note {
+        margin-top: 2rem;
+        padding-top: 1.5rem;
+        font-size: 0.85rem;
+        line-height: 1.65;
+      }
+
+      /* Deposit */
+      .deposit__intro {
+        font-size: 0.88rem;
+        margin-bottom: 1.5rem;
+      }
+      .deposit__company { font-size: 1.05rem; }
+      .deposit__rnc { font-size: 0.78rem; margin-bottom: 1.5rem; }
+      .deposit__account { padding: 1.1rem; }
+      .deposit__row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.1rem;
+        padding: 0.55rem 0;
+      }
+      .deposit__row span:last-child {
+        text-align: left;
+        font-size: 1rem;
+        word-break: break-all;
+      }
+      .deposit__note {
+        font-size: 0.82rem;
+        line-height: 1.6;
+      }
+
+      /* Steps */
+      .steps__list { margin-top: 2rem; }
+      .step-item {
+        padding: 1.5rem 0;
+        border-bottom: 1px solid var(--cd-line);
+      }
+      .step-item:last-child { border-bottom: none; }
+      .step-item p { font-size: 0.88rem; }
+
+      /* FAQ */
+      .faq__list { margin-top: 2rem; }
+      .faq-item__question {
+        font-size: 0.92rem;
+        gap: 0.75rem;
+        line-height: 1.45;
+      }
+      .faq-item__answer p {
+        font-size: 0.86rem;
+        padding-bottom: 1.15rem;
+      }
+
+      /* Final CTA */
+      .final-cta { padding: 3rem 0 5.5rem; }
+      .final-cta p {
+        font-size: 0.92rem;
+        margin-bottom: 1.75rem;
+        padding: 0 0.25rem;
+      }
+
+      /* Footer */
+      .footer { padding: 2rem 0 6rem; }
+      .footer__legal {
+        font-size: 0.68rem;
+        line-height: 1.6;
+        padding: 0 0.5rem;
+      }
+
+      /* WhatsApp float */
+      .whatsapp-float {
+        bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
+        right: 1rem;
+        width: 52px;
+        height: 52px;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .sticky-bar__countdown { gap: 0.35rem; }
+      .sticky-bar__unit span { min-width: 1.25rem; font-size: 0.85em; }
+      h1 { font-size: 1.55rem; }
+      .brand-logo__tagline { letter-spacing: 0.1em; }
+    }
   </style>
 </head>
 <body>
 
   <!-- Barra sticky con countdown (solo en promo activa) -->
   <div class="sticky-bar hidden" id="stickyBar" aria-live="polite">
-    <span class="sticky-bar__scarcity" id="stickyScarcity">Quedan pocos paquetes · Oferta por tiempo limitado</span>
+    <span class="sticky-bar__scarcity sticky-bar__scarcity--full" id="stickyScarcity">Quedan pocos paquetes · Oferta por tiempo limitado</span>
+    <span class="sticky-bar__scarcity sticky-bar__scarcity--short">Pocos paquetes · Tiempo limitado</span>
     <span class="sticky-bar__sep"></span>
     <div class="sticky-bar__countdown" id="countdown">
       <span class="sticky-bar__unit"><span id="cd-days">00</span>d</span>

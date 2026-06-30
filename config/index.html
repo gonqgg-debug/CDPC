@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="es-DO">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Concept Decor · Panel de configuración</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cd-taupe: #907860;
+      --cd-taupe-dk: #6E5A47;
+      --cd-gold: #E4C078;
+      --cd-gold-lt: #F0CC9C;
+      --cd-cream: #FBF8F3;
+      --cd-sand: #F2EBE0;
+      --cd-line: #E0D6C8;
+      --cd-ink: #2E2A24;
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans: 'Inter', system-ui, sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: var(--font-sans);
+      background: var(--cd-cream);
+      color: var(--cd-ink);
+      min-height: 100vh;
+      padding: 2rem 1.25rem 4rem;
+      line-height: 1.6;
+    }
+    .wrap { max-width: 520px; margin: 0 auto; }
+    .brand {
+      font-family: var(--font-serif);
+      font-size: 1.5rem;
+      color: var(--cd-taupe-dk);
+      margin-bottom: 0.25rem;
+    }
+    .brand-sub {
+      font-size: 0.65rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--cd-taupe);
+      margin-bottom: 2.5rem;
+    }
+    h1 {
+      font-family: var(--font-serif);
+      font-size: 1.75rem;
+      color: var(--cd-taupe-dk);
+      margin-bottom: 0.5rem;
+    }
+    .intro {
+      font-size: 0.9rem;
+      color: var(--cd-taupe);
+      margin-bottom: 2rem;
+      font-weight: 300;
+    }
+    .card {
+      background: var(--cd-cream);
+      border: 1px solid var(--cd-line);
+      padding: 1.75rem;
+      margin-bottom: 1.25rem;
+    }
+    .field { margin-bottom: 1.35rem; }
+    .field:last-child { margin-bottom: 0; }
+    label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--cd-taupe-dk);
+      margin-bottom: 0.45rem;
+    }
+    .hint {
+      font-size: 0.78rem;
+      color: var(--cd-taupe);
+      font-weight: 300;
+      margin-top: 0.35rem;
+    }
+    input[type="text"],
+    input[type="password"],
+    input[type="number"],
+    input[type="datetime-local"] {
+      width: 100%;
+      padding: 0.75rem 0.85rem;
+      border: 1px solid var(--cd-line);
+      background: #fff;
+      font-family: var(--font-sans);
+      font-size: 0.95rem;
+      color: var(--cd-ink);
+    }
+    input:focus {
+      outline: none;
+      border-color: var(--cd-gold);
+    }
+    .toggle {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      cursor: pointer;
+    }
+    .toggle input { width: 18px; height: 18px; accent-color: var(--cd-taupe-dk); }
+    .toggle span { font-size: 0.95rem; }
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      padding: 0.95rem 1.5rem;
+      border: none;
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.25s;
+    }
+    .btn--primary { background: var(--cd-gold); color: var(--cd-ink); }
+    .btn--primary:hover { background: var(--cd-gold-lt); }
+    .btn--outline {
+      background: transparent;
+      color: var(--cd-taupe-dk);
+      border: 1px solid var(--cd-line);
+      margin-top: 0.65rem;
+    }
+    .btn--outline:hover { border-color: var(--cd-taupe); }
+    .error {
+      background: #fdf0ee;
+      border-left: 3px solid #c45c4a;
+      padding: 0.85rem 1rem;
+      font-size: 0.88rem;
+      color: #8b3a2e;
+      margin-bottom: 1rem;
+      display: none;
+    }
+    .error.visible { display: block; }
+    .success {
+      background: var(--cd-sand);
+      border-left: 3px solid var(--cd-gold);
+      padding: 0.85rem 1rem;
+      font-size: 0.88rem;
+      color: var(--cd-taupe-dk);
+      margin-bottom: 1rem;
+      display: none;
+    }
+    .success.visible { display: block; }
+    .steps-box {
+      background: var(--cd-sand);
+      border: 1px solid var(--cd-line);
+      padding: 1.25rem;
+      font-size: 0.85rem;
+      color: var(--cd-taupe);
+      margin-top: 1.5rem;
+    }
+    .steps-box ol { padding-left: 1.2rem; margin-top: 0.5rem; }
+    .steps-box li { margin-bottom: 0.35rem; }
+    .hidden { display: none !important; }
+    .status-pill {
+      display: inline-block;
+      padding: 0.3rem 0.75rem;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+    .status-pill--on  { background: var(--cd-gold-lt); color: var(--cd-taupe-dk); }
+    .status-pill--off { background: var(--cd-sand); color: var(--cd-taupe); }
+    a { color: var(--cd-taupe-dk); }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="brand">Concept Decor</p>
+    <p class="brand-sub">Panel de configuración</p>
+
+    <!-- Pantalla de login -->
+    <div id="loginScreen">
+      <h1>Acceso restringido</h1>
+      <p class="intro">Esta página no está enlazada desde la landing. Solo personal autorizado.</p>
+      <div class="card">
+        <div class="error" id="loginError">Contraseña incorrecta.</div>
+        <div class="field">
+          <label for="password">Contraseña</label>
+          <input type="password" id="password" autocomplete="current-password" placeholder="Ingresa la contraseña">
+        </div>
+        <button type="button" class="btn btn--primary" id="loginBtn">Entrar</button>
+      </div>
+    </div>
+
+    <!-- Panel de edición -->
+    <div id="editorScreen" class="hidden">
+      <h1>Configuración de la campaña</h1>
+      <p class="intro">Los cambios se aplican a la landing cuando subes el archivo <code>config.json</code> actualizado.</p>
+      <span class="status-pill" id="statusPill"></span>
+
+      <div class="success" id="saveSuccess"></div>
+
+      <form id="configForm" class="card">
+        <div class="field">
+          <label class="toggle">
+            <input type="checkbox" id="promoActiva">
+            <span>Promoción activa</span>
+          </label>
+          <p class="hint">Si está apagada, la landing muestra precios normales aunque no haya pasado la fecha.</p>
+        </div>
+
+        <div class="field">
+          <label for="fechaFin">Fecha y hora de cierre</label>
+          <input type="datetime-local" id="fechaFin" required>
+          <p class="hint">Cuando llegue esta hora, el timer se apaga solo y vuelven los precios regulares.</p>
+        </div>
+
+        <div class="field">
+          <label for="whatsapp">WhatsApp (sin + ni espacios)</label>
+          <input type="text" id="whatsapp" inputmode="numeric" pattern="[0-9]+" required>
+        </div>
+
+        <div class="row">
+          <div class="field">
+            <label for="descuentoPct">Descuento de cierre (%)</label>
+            <input type="number" id="descuentoPct" min="0" max="100" step="1" required>
+          </div>
+          <div class="field">
+            <label for="reservaPct">Reserva para apartar (%)</label>
+            <input type="number" id="reservaPct" min="0" max="100" step="1" required>
+          </div>
+        </div>
+      </form>
+
+      <button type="button" class="btn btn--primary" id="downloadBtn">Descargar config.json</button>
+      <button type="button" class="btn btn--outline" id="previewBtn">Ver landing</button>
+      <button type="button" class="btn btn--outline" id="logoutBtn">Cerrar sesión</button>
+
+      <div class="steps-box">
+        <strong>Para publicar los cambios:</strong>
+        <ol>
+          <li>Haz clic en <em>Descargar config.json</em></li>
+          <li>Reemplaza el archivo <code>config.json</code> en la raíz del sitio (junto a <code>index.html</code>)</li>
+          <li>Sube el archivo a tu hosting si la página está en internet</li>
+          <li>Recarga la landing — listo</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /* ═══════════════════════════════════════════════════════════
+       CAMBIA ESTA CONTRASEÑA antes de publicar el sitio
+       ═══════════════════════════════════════════════════════════ */
+    const ADMIN_PASSWORD = "jardines3";
+
+    const SESSION_KEY = "conceptDecorAdmin";
+    const CONFIG_PATH = "../config.json";
+
+    let currentConfig = {};
+
+    /* ─── Login ─── */
+    function isLoggedIn() {
+      return sessionStorage.getItem(SESSION_KEY) === "1";
+    }
+
+    function showEditor() {
+      document.getElementById("loginScreen").classList.add("hidden");
+      document.getElementById("editorScreen").classList.remove("hidden");
+      loadConfigIntoForm();
+    }
+
+    function showLogin() {
+      document.getElementById("loginScreen").classList.remove("hidden");
+      document.getElementById("editorScreen").classList.add("hidden");
+      document.getElementById("password").value = "";
+    }
+
+    function tryLogin() {
+      const pwd = document.getElementById("password").value;
+      const err = document.getElementById("loginError");
+      if (pwd === ADMIN_PASSWORD) {
+        sessionStorage.setItem(SESSION_KEY, "1");
+        err.classList.remove("visible");
+        showEditor();
+      } else {
+        err.classList.add("visible");
+      }
+    }
+
+    /* ─── Fechas ISO ↔ datetime-local ─── */
+    function isoToLocalInput(iso) {
+      const d = new Date(iso);
+      const pad = (n) => String(n).padStart(2, "0");
+      return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`;
+    }
+
+    function localInputToIso(value) {
+      const d = new Date(value);
+      const pad = (n) => String(n).padStart(2, "0");
+      return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}:00`;
+    }
+
+    /* ─── Cargar / guardar config ─── */
+    async function fetchConfig() {
+      const res = await fetch(CONFIG_PATH + "?" + Date.now());
+      if (!res.ok) throw new Error("No se pudo cargar config.json");
+      return res.json();
+    }
+
+    async function loadConfigIntoForm() {
+      try {
+        currentConfig = await fetchConfig();
+      } catch {
+        currentConfig = {
+          promoActiva: true,
+          fechaFin: "2026-07-02T23:59:00",
+          whatsapp: "18092252256",
+          descuento: 0.15,
+          porcentajeReserva: 0.30
+        };
+      }
+
+      document.getElementById("promoActiva").checked = !!currentConfig.promoActiva;
+      document.getElementById("fechaFin").value = isoToLocalInput(currentConfig.fechaFin);
+      document.getElementById("whatsapp").value = currentConfig.whatsapp || "";
+      document.getElementById("descuentoPct").value = Math.round((currentConfig.descuento || 0) * 100);
+      document.getElementById("reservaPct").value = Math.round((currentConfig.porcentajeReserva || 0) * 100);
+
+      updateStatusPill();
+    }
+
+    function readFormConfig() {
+      return {
+        promoActiva: document.getElementById("promoActiva").checked,
+        fechaFin: localInputToIso(document.getElementById("fechaFin").value),
+        whatsapp: document.getElementById("whatsapp").value.replace(/\D/g, ""),
+        descuento: Number(document.getElementById("descuentoPct").value) / 100,
+        porcentajeReserva: Number(document.getElementById("reservaPct").value) / 100
+      };
+    }
+
+    function updateStatusPill() {
+      const cfg = readFormConfig();
+      const pill = document.getElementById("statusPill");
+      const now = Date.now();
+      const end = new Date(cfg.fechaFin).getTime();
+      const active = cfg.promoActiva && now < end;
+
+      pill.textContent = active ? "Oferta activa en la landing" : "Oferta apagada en la landing";
+      pill.className = "status-pill " + (active ? "status-pill--on" : "status-pill--off");
+    }
+
+    function downloadConfig() {
+      const cfg = readFormConfig();
+      const json = JSON.stringify(cfg, null, 2);
+      const blob = new Blob([json], { type: "application/json" });
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = "config.json";
+      a.click();
+      URL.revokeObjectURL(a.href);
+
+      const msg = document.getElementById("saveSuccess");
+      msg.textContent = "config.json descargado. Reemplázalo en la raíz del sitio y sube a tu hosting.";
+      msg.classList.add("visible");
+      updateStatusPill();
+    }
+
+    /* ─── Eventos ─── */
+    document.getElementById("loginBtn").addEventListener("click", tryLogin);
+    document.getElementById("password").addEventListener("keydown", (e) => {
+      if (e.key === "Enter") tryLogin();
+    });
+    document.getElementById("downloadBtn").addEventListener("click", downloadConfig);
+    document.getElementById("previewBtn").addEventListener("click", () => {
+      window.open("../index.html", "_blank");
+    });
+    document.getElementById("logoutBtn").addEventListener("click", () => {
+      sessionStorage.removeItem(SESSION_KEY);
+      showLogin();
+    });
+    document.getElementById("configForm").addEventListener("change", updateStatusPill);
+    document.getElementById("configForm").addEventListener("input", updateStatusPill);
+
+    if (isLoggedIn()) showEditor();
+  </script>
+</body>
+</html>

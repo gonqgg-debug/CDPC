@@ -409,7 +409,12 @@
       gap: 2rem;
     }
     @media (min-width: 768px) {
-      .packages__grid { grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+      .packages__grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+        max-width: 760px;
+        margin: 0 auto;
+      }
     }
     .package-card {
       background: var(--cd-cream);
@@ -555,6 +560,78 @@
       font-style: italic;
     }
     body.promo-inactive .conditions__promo-note { display: none; }
+
+    /* ─── Depósito ─── */
+    .deposit {
+      background: var(--cd-sand);
+      border-top: 1px solid var(--cd-line);
+    }
+    .deposit__intro {
+      max-width: 520px;
+      margin-bottom: 2.5rem;
+      color: var(--cd-taupe);
+      font-weight: 300;
+      line-height: 1.75;
+    }
+    .deposit__company {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      color: var(--cd-taupe-dk);
+      margin-bottom: 0.35rem;
+    }
+    .deposit__rnc {
+      font-size: 0.82rem;
+      color: var(--cd-taupe);
+      letter-spacing: 0.04em;
+      margin-bottom: 2rem;
+    }
+    .deposit__accounts {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+    @media (min-width: 640px) {
+      .deposit__accounts { grid-template-columns: repeat(2, 1fr); }
+    }
+    .deposit__account {
+      background: var(--cd-cream);
+      border: 1px solid var(--cd-line);
+      padding: 1.5rem;
+    }
+    .deposit__account-label {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--cd-gold);
+      margin-bottom: 0.75rem;
+    }
+    .deposit__row {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0.45rem 0;
+      border-bottom: 1px solid var(--cd-line);
+      font-size: 0.88rem;
+    }
+    .deposit__row:last-child { border-bottom: none; }
+    .deposit__row span:first-child {
+      color: var(--cd-taupe);
+      font-weight: 300;
+    }
+    .deposit__row span:last-child {
+      color: var(--cd-taupe-dk);
+      font-weight: 500;
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+    }
+    .deposit__note {
+      margin-top: 1.5rem;
+      font-size: 0.85rem;
+      color: var(--cd-taupe);
+      font-weight: 300;
+      font-style: italic;
+    }
 
     /* ─── Steps ─── */
     .steps { background: var(--cd-cream); }
@@ -905,12 +982,61 @@
         </div>
         <div class="step-item reveal reveal-delay-2">
           <h3>Asegura con el 30%</h3>
-          <p>Aparta tu paquete con el 30% antes de que se agoten o termine la oferta. Los datos de depósito te los enviamos por WhatsApp.</p>
+          <p>Realiza la transferencia del 30% a una de las cuentas de abajo. Envíanos el comprobante por WhatsApp para confirmar tu apartado.</p>
         </div>
         <div class="step-item reveal reveal-delay-3">
           <h3>Coordinamos la instalación</h3>
           <p>Cuando tengas tu apartamento, agendamos la entrega e instalación. Llegas, montamos, y tú recibes listo para rentar.</p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Datos de depósito (solo promo activa) -->
+  <section class="deposit promo-only" id="deposito">
+    <div class="container">
+      <div class="reveal">
+        <p class="section-label">Datos para apartar</p>
+        <h2>Información de depósito</h2>
+        <div class="section-divider"></div>
+        <p class="deposit__intro" style="margin-top: 1rem;">
+          Transfiere el 30% de tu paquete a una de estas cuentas y envíanos el comprobante por WhatsApp para confirmar tu reserva.
+        </p>
+        <p class="deposit__company">Concept Decor PC SRL</p>
+        <p class="deposit__rnc">RNC: 133-117-061</p>
+        <div class="deposit__accounts">
+          <div class="deposit__account reveal reveal-delay-1">
+            <p class="deposit__account-label">Cuenta en dólares</p>
+            <div class="deposit__row">
+              <span>Número de cuenta</span>
+              <span>4010360387</span>
+            </div>
+            <div class="deposit__row">
+              <span>Tipo</span>
+              <span>Ahorro</span>
+            </div>
+            <div class="deposit__row">
+              <span>Moneda</span>
+              <span>USD</span>
+            </div>
+          </div>
+          <div class="deposit__account reveal reveal-delay-2">
+            <p class="deposit__account-label">Cuenta en pesos</p>
+            <div class="deposit__row">
+              <span>Número de cuenta</span>
+              <span>4040038709</span>
+            </div>
+            <div class="deposit__row">
+              <span>Tipo</span>
+              <span>Ahorro</span>
+            </div>
+            <div class="deposit__row">
+              <span>Moneda</span>
+              <span>DOP</span>
+            </div>
+          </div>
+        </div>
+        <p class="deposit__note">Incluye en la transferencia tu nombre y el paquete que estás apartando. Te confirmamos por WhatsApp en cuanto recibamos el comprobante.</p>
       </div>
     </div>
   </section>
@@ -1056,20 +1182,6 @@
 
     /* ─── Datos de paquetes ─── */
     const PAQUETES = [
-      {
-        nombre: "1 Habitación",
-        imagen: "WhatsApp Image 2026-06-29 at 11.05.52 AM (3).jpeg",
-        descripcion: "Listo para recibir tu primer huésped.",
-        incluye: [
-          "Comedor 4 sillas",
-          "Sofá cama",
-          "Mesa de centro",
-          "Butaca",
-          "Cama queen con colchón",
-          "Mesas de noche"
-        ],
-        pvp: 4995
-      },
       {
         nombre: "2 Habitaciones",
         imagen: "WhatsApp Image 2026-06-29 at 11.05.52 AM (1).jpeg",
